@@ -22,7 +22,7 @@ public class EditorTexto {
             inicio = nuevo;
         } else {
             actual.setAdelante(null);
-            
+
             actual.setAdelante(nuevo);
             nuevo.setAtras(actual);
             actual = nuevo;
@@ -30,7 +30,9 @@ public class EditorTexto {
     }
 
     public String deshacer() {
-        if (actual == null) return null;
+        if (actual == null) {
+            return null;
+        }
         actual = actual.getAtras();
         return obtenerTextoHastaActual();
     }
@@ -43,17 +45,23 @@ public class EditorTexto {
             }
             return null;
         }
-        if (actual.getAdelante() == null) return null; 
-        
+        if (actual.getAdelante() == null) {
+            return null;
+        }
+
         actual = actual.getAdelante();
         return obtenerTextoHastaActual();
     }
-    
+
     public String obtenerUltimaPalabra() {
         return (actual != null) ? actual.getPalabra() : null;
     }
 
     private String obtenerTextoHastaActual() {
+        if (actual == null) {
+            return "";
+        }
+
         StringBuilder sb = new StringBuilder();
         Nodo temporal = inicio;
         while (temporal != null) {
